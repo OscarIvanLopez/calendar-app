@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 
@@ -11,35 +11,30 @@ import "moment/locale/es";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { uiOpenModal } from "../../actions/ui";
-import { eventSetActive, clearActiveEvent } from "../../actions/events";
+import {
+  eventSetActive,
+  clearActiveEvent,
+  eventStartLoading,
+} from "../../actions/events";
 import AddNewFab from "../ui/AddNewFab";
 import DeleteEventFab from "../ui/DeleteEventFab";
 
 moment.locale("es");
 
 const localizer = momentLocalizer(moment);
-//
-// const events = [
-//   {
-//     title: "Cumpleaños de Aydin<3",
-//     start: moment().toDate(),
-//     end: moment().add(2, "hours").toDate(),
-//     bgcolor: "#fff",
-//     notes: "Comprar el pastel",
-//     user: {
-//       id: "123",
-//       name: "Ivan",
-//     },
-//   },
-// ];
 
 // !component
 const CalendarScreen = () => {
   const dispatch = useDispatch();
   const { events, activeEvent } = useSelector((state) => state.calendar);
+  const { uid } = useSelector((state) => state.auth);
   const [lastView, setLastView] = useState(
     localStorage.getItem("lastView") || "month"
   );
+
+  useEffect(() => {
+    dispatch(eventStartLoading());
+  }, [dispatch]);
 
   // Event functions
   const onDoubleClick = (e) => {
@@ -48,6 +43,7 @@ const CalendarScreen = () => {
   const onSelectEvent = (e) => {
     dispatch(eventSetActive(e));
   };
+
   const onViewChange = (e) => {
     setLastView(e);
     localStorage.setItem("lastView", e);
@@ -55,20 +51,20 @@ const CalendarScreen = () => {
 
   const eventStyleGetter = (event, start, end, isSelected) => {
     const style = {
-      backgroundcolor: "#367CF7",
+      backgroundColor: uid === event.user._id ? "#367CF7" : "#465660",
       bordarRadius: "0px",
       opacity: 0.8,
       display: "block",
       color: "white",
       wordWrap: "break-word",
     };
+
     return {
       style,
     };
   };
 
   const onSelectSlot = (e) => {
-    console.log(e);
     dispatch(clearActiveEvent());
   };
   return (

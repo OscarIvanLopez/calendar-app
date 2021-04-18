@@ -8,9 +8,9 @@ import DateTimePicker from "react-datetime-picker";
 import moment from "moment";
 import Swal from "sweetalert2";
 import {
-  eventAddNew,
   clearActiveEvent,
-  eventUpdated,
+  eventStartAddNew,
+  eventStartUpdate,
 } from "../../actions/events";
 
 const customStyles = {
@@ -55,7 +55,7 @@ const CalendarModal = () => {
     if (activeEvent) {
       setFormValues(activeEvent);
     } else {
-        setFormValues(initEvent);
+      setFormValues(initEvent);
     }
   }, [activeEvent, setFormValues]);
 
@@ -109,23 +109,13 @@ const CalendarModal = () => {
     }
     // TODO: realizar grabacion
     if (activeEvent) {
-      dispatch(eventUpdated(formValues));
+      dispatch(eventStartUpdate(formValues));
     } else {
-      dispatch(
-        eventAddNew({
-          ...formValues,
-          id: new Date().getTime(),
-          user: {
-            id: 123,
-            name: "Aydin preciosa",
-          },
-        })
-      );
+      dispatch(eventStartAddNew(formValues));
     }
     setTitleValid(true);
     closeModal();
   };
-
   return (
     <Modal
       className="modal"
@@ -137,6 +127,7 @@ const CalendarModal = () => {
       contentLabel="Example Modal"
     >
       <h1> {activeEvent ? "Editar Evento" : "Nuevo Evento"} </h1>
+      
       <hr />
       <form className="container" onSubmit={handleSubmitForm}>
         <div className="form-group">
