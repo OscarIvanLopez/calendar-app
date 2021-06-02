@@ -28,7 +28,7 @@ export const LoginScreen = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    dispatch(startLogin(lEmail, lPassword));
+    dispatch(startLogin(lEmail.trim(), lPassword));
   };
 
   const handleRegister = (e) => {
@@ -45,10 +45,10 @@ export const LoginScreen = () => {
     }
   };
   return (
-    <>
+    
     <div className="container login-container">
     <h1 className="title-app">{title}</h1>
-    <h1 className="title-login">Administra tareas con tus compañeros</h1>
+    <h1 className="title-login">Administra eventos con tus compañeros</h1>
       <div className="row forms">
         <div className="col-md-6 login-form-1">
           <h3>Ingreso</h3>
@@ -131,7 +131,6 @@ export const LoginScreen = () => {
         </div>
       </div>
     </div>
-    </>
   );
 };
 
