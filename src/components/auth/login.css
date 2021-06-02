@@ -1,5 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+.forms{
+    width: 90%;
+}
+.title-app{
+    font-family: 'Staatliches', cursive;
+    margin: 0;
+    color: #0062cc;
+    font-weight: 700;
+    font-size: 3rem;
+}
+@media(max-width: 768px){
+    .title-app{
+        margin-top: 5rem;
+    }
+}
+.title-login{
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-family: 'Staatliches', cursive;
+}
 .login-container{
-    margin-top: 15%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .login-form-1{
     border-radius: 5px;

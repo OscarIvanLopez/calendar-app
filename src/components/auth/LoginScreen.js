@@ -7,6 +7,7 @@ import "./login.css";
 
 export const LoginScreen = () => {
   const dispatch = useDispatch();
+  const title = "<CalendarApp />"
 
   const [formLoginvalues, handleLoginInputChange] = useForm({
     lEmail: "",
@@ -44,8 +45,11 @@ export const LoginScreen = () => {
     }
   };
   return (
+    <>
     <div className="container login-container">
-      <div className="row">
+    <h1 className="title-app">{title}</h1>
+    <h1 className="title-login">Administra tareas con tus compañeros</h1>
+      <div className="row forms">
         <div className="col-md-6 login-form-1">
           <h3>Ingreso</h3>
           <form onSubmit={handleLogin}>
@@ -127,6 +131,7 @@ export const LoginScreen = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
