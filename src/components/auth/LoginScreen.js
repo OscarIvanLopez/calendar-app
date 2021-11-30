@@ -47,10 +47,10 @@ export const LoginScreen = () => {
   return (
     
     <div className="container login-container">
-    <h1 className="title-app">{title}</h1>
-    <h1 className="title-login">Administra eventos con tus compañeros</h1>
-      <div className="row forms">
-        <div className="col-md-6 login-form-1">
+    <h1 className="title-app animate__animated animate__fadeInDown">{title}</h1>
+    <h1 className="title-login animate__animated animate__fadeInUp animate__faster">Administra eventos con tus compañeros</h1>
+      <div className="row forms" >
+        <div className="col-md-6 login-form-1 animate__animated animate__fadeInLeft animate__faster">
           <h3>Ingreso</h3>
           <form onSubmit={handleLogin}>
             <div className="form-group">
@@ -79,7 +79,7 @@ export const LoginScreen = () => {
           </form>
         </div>
 
-        <div className="col-md-6 login-form-2">
+        <div className="col-md-6 login-form-2 animate__animated animate__fadeInRight animate__faster">
           <h3>Registro</h3>
           <form onSubmit={handleRegister}>
             <div className="form-group">
